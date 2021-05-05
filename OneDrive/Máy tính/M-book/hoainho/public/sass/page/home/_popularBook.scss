@@ -1,0 +1,159 @@
+// popularBook
+
+.popularBook {
+    padding: 20px 0;
+    &__header {
+        color: var(--clr-primary);
+        text-align: center;
+        padding: 10px;
+    }
+    &__item {
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+        margin: 10px;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        &-img {
+            height: 300px;
+            width: 100%;
+            text-align: center;
+            // box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+            transition: all 0.5s;
+            cursor: pointer;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &-over {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 1;
+                transition: opa 0.3s linear;
+                display: none;
+            }
+            &-sub {
+                z-index: 10;
+                position: absolute;
+                padding: 10px 5px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                bottom: 0;
+                width: 100%;
+                font-size: 2rem;
+                // display: none;
+                &--aniFr {
+                    position: relative;
+                    transition: all 0.4s;
+                    transform: translateY(300%);
+                }
+                &--aniThir {
+                    position: relative;
+                    transition: all 0.6s;
+                    transform: translateY(300%);
+                }
+                span {
+                    color: #fff;
+                    display: flex;
+                    padding: 12px 16px;
+                    margin: 0 10px;
+                    border-radius: 50%;
+                    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+                    border: 1px solid #cacaca;
+                    &:hover {
+                        background-color: var(--clr-bcg);
+                        color: var(--clr-primary);
+                    }
+                    @include mobie {
+                        padding: 8px 10px;
+                        margin: 0 5px;
+                    }
+                    @include tablet {
+                        padding: 6px 8px;
+                        margin: 0;
+                        // margin: 0 5px;
+                    }
+                }
+                &--top {
+                    position: relative;
+                    top: -35px;
+                    @include tablet {
+                        top: -25px;
+                    }
+                }
+                @include mobie {
+                    padding: 10px;
+                    font-size: 1.5rem;
+                }
+                @include tablet {
+                    font-size: 1.5rem;
+                    padding: 5px;
+                }
+            }
+            img {
+                display: block;
+                max-width: 100%;
+                max-height: 100%;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                transition: all 0.5s;
+            }
+            @include mobie {
+                height: 200px;
+            }
+            @include tablet {
+                height: 160px;
+            }
+        }
+        &-sub {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 5px 0;
+            h3 {
+                text-align: center;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 2;
+                overflow: hidden;
+                cursor: pointer;
+                &:hover {
+                    color: var(--clr-primary);
+                }
+            }
+            span {
+                color: var(--clr-font-low);
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 1;
+                overflow: hidden;
+            }
+            @include tablet {
+                font-size: 1.3rem;
+            }
+        }
+        &:hover {
+            .popularBook__item-img-over {
+                display: block;
+            }
+            .popularBook__item-img img {
+                transform: scale(1.5);
+            }
+            .popularBook__item-img-sub {
+                display: flex;
+            }
+        }
+        @include tablet {
+            margin: 5px;
+            padding: 5px;
+        }
+    }
+}

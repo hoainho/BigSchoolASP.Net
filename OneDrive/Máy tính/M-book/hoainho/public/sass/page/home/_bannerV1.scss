@@ -1,0 +1,98 @@
+
+// Banner V1
+
+.bannerV1{
+    padding-top: 20px;
+    cursor: pointer;
+    overflow: hidden;
+    
+    &__item{
+        position: relative;
+        height: 270px;
+        
+        overflow: hidden;
+        &--ml{
+            margin-left: 10px;
+        }
+        &--mr{
+            margin-right: 10px;
+        }
+        &-bg{
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            width: 100%;
+            background-image: url(http://25.media.tumblr.com/tumblr_m7vh504oZl1qahfowo1_500.png);
+            transition: all 0.3s;
+        }
+        &-content{
+           position: absolute;
+           bottom: 0;
+           left: 0;
+           padding: 10px;
+           display: flex;
+           width: 100%;
+           align-items: center;
+           background-color: rgba(0,0,0,0.3);
+           h2{
+               transition: all 0.2s;
+               &:hover{
+                   color: var(--clr-primary);
+               }
+           }
+           &-img{   
+               height: 100px;
+               width: 100px;
+               box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+               display: flex;
+               align-items: center;
+               justify-self: center;
+               img{
+                   max-height: 100%;
+                   max-width: 100%;
+               }
+              
+               @include mobie{
+                   width: 100px;
+               }
+               
+           }
+           &-sub{
+                padding: 10px;
+                display: flex;
+                flex-direction: column;
+                color: rgb(241, 241, 241);
+                width: 100%;
+                @include mobie{
+                        padding: 5px 2px;
+                        font-size: 1.4rem;
+                        justify-content: center;
+                }
+                @include tablet{
+                    font-size: 1.3rem;
+                }
+           }
+           @include mobie{
+               padding: 5px;
+           }
+           @include tablet{
+               padding: 5px 15px;
+           }
+        }
+        &:hover{
+            .bannerV1__item-bg{
+                transform: scale(1.2);
+
+            }
+        }
+        @include mobie{
+            height: 210px;
+            margin: 5px 0;
+        }
+    }
+    
+}
