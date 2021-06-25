@@ -1,0 +1,83 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+    @Html.AntiForgeryToken()
+
+<ul class="nav navbar-nav navbar-right header__control-customer">
+    <li class="header__control-account-sub">
+            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage"
+       , routeValues: null
+       , htmlAttributes: new { title = "Manage" ,@class = ""})
+        <ul class="header__control-account-sub-dropdown">
+            <li><a href="/">Thông Tin Tài Khoản</a></li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
+    </li>
+    <li class="header__control-cart">
+        @*<img src="~/Content/images/cart.png" alt="cart_image">*@
+        <div class=''>
+            <i class=" fa fa-shopping-bag header__control-cart-icon" aria-hidden="true"></i>
+            <div class='header__control-cart-quantity'>
+                <span>1 </span>
+            </div>
+            <div class='header__control-cart-sub'>
+                <div class='header__control-cart-sub-content'>
+                    <div class="shopping-cart">
+                        <div class="shopping-cart-header">
+                            <i class="fa fa-shopping-cart cart-icon"></i><span class="badge">2</span>
+                            <div class="shopping-cart-total">
+                                <i class="fa fa-money" aria-hidden="true"></i>
+                                <span class="main-color-text total">
+                                    @*{cart?.totalPrice?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} đ*@
+                                    1000000d
+                                </span>
+                            </div>
+                        </div>
+                        <ul class="shopping-cart-items">
+                            @*{cart?.listProduct && cart.listProduct.map(item => {
+                                return (*@
+                            <li key={item.id} class="shopping-cart-items-item clearfix">
+                                <img src={item.imageBef} alt="item1" />
+                                <div>
+                                    <span class="item-name">{item.name}</span>
+                                    <span class="item-detail">{item.author?.name}</span>
+                                    <span class="item-price">
+                                        @*{item.pricePresent
+                                            ? item.pricePresent?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+                                            : item.priceOld?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} đ*@
+                                    </span>
+                                    <span class="item-detail">x {2}</span>
+                                </div>
+
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    <div class='header__control-cart-sub-detail'>
+                        <div class="button-custom-1">
+                            <a href="#">
+                                <span class="mas">Thanh Toán</span>
+                                <button id='work' type="button" name="Hover">Đến Giỏ Hàng</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </li>
+
+
+</ul>
+    }
+}
+else
+{
+    <ul class="fanatics-navbar_list">
+        <li class="fanatics-navbar_item">@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class= "fanatics-navbar_link " });</li>
+        <li class="fanatics-navbar_item">@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" ,@class= "fanatics-navbar_link"})</li>
+    </ul>
+}

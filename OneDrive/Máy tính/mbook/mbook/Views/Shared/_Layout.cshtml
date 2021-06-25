@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link rel="shortcut icon" href="~/Content/images/logo-one.png" type="image/x-icon">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="https://kit.fontawesome.com/b5ba3ddc1e.js" crossorigin="anonymous"></script>
+</head>
+<body>
+   @* <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                </ul>
+                
+            </div>
+        </div>
+    </div>*@
+    <section class="fanatics-hero ">
+        <div class="fanatics-navbar navbar-fixed-top">
+            <div class="fanatics-navbar_image">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="fanatics-navbar_logo">
+                    <img src="~/Content/images/logo-one.png" alt="logo">
+                </div>
+            </div>
+            <ul class="fanatics-navbar_list">
+                <li class="fanatics-navbar_item">
+                    <a class="fanatics-navbar_link" href="youtube.com">Home</a>
+                </li>
+                <li class="fanatics-navbar_item">
+                    <a class="fanatics-navbar_link" href="youtube.com">About</a>
+                </li>
+                <li class="fanatics-navbar_item">
+                    <a class="fanatics-navbar_link" href="youtube.com">Products</a>
+                </li>
+                <li class="fanatics-navbar_item">
+                    <a class="fanatics-navbar_link" href="youtube.com">Contact</a>
+                </li>
+                <li class="fanatics-navbar_item">
+                    <a class="fanatics-navbar_link" href="youtube.com">Account</a>
+                </li>
+                @Html.Partial("_LoginPartial")
+               
+            </ul>
+        </div>
+        <!-- Banner -->
+        <div class="fanatics-banner">
+            <div class="fanatics-banner-content">
+                <h1 class="fanatics-banner-content-title">
+                    Give Your Exercise <br> A New Mode!
+                </h1>
+                <p class="fanatics-banner-content-thumbnails">
+                    Lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry. Lorem Ipsum has been the
+                    industry's standard dummy text ever since the 1500s
+                </p>
+                <button class="fanatics-banner-btn" onclick="buyNow();" type="button" class="btn btn-danger">
+                    Buy Now
+                    &#8594;
+                </button>
+            </div>
+            <div class="fanatics-banner-image">
+                <img src="~/Content/images/all-sports-banner.png" alt="image_banner">
+            </div>
+        </div>
+    </section>
+
+    <div class="">
+        @RenderBody()
+        <hr />
+        @*<footer>
+            <p>&copy;  - My ASP.NET Application</p>
+        </footer>*@
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
