@@ -1,0 +1,30 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+    @Html.AntiForgeryToken()
+
+    <ul class="nav navbar-nav navbar-right">
+        <li class="navbar-account-title">
+            @Html.ActionLink("Hello 👳" + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+            <ul class="navbar-list">
+                <li class="navbar-item"><a href="/Manage/Index"><i class="fas fa-user-cog"></i> Quản Lí Tài Khoản</a></li>
+                <li class="navbar-item"><a href="@Url.Action("Mine","Courses")"><i class="fas fa-book"></i> Quản Lí Khóa Học</a></li>
+                <li class="navbar-item"><a href="@Url.Action("Attendance","Courses")"><i class="fas fa-address-book"></i>  Khóa Học Đang Học</a></li>
+                <li class="navbar-item"><a href="@Url.Action("Following","Courses")"><i class="fas fa-users"></i> Giảng Viên Theo Dõi</a></li>
+
+                <hr />
+                <li style="text-align:center"><a class="navbar-logout-link" href="javascript:document.getElementById('logoutForm').submit()">Đăng Xuất  <i class="fas fa-sign-out-alt"></i></a></li>
+            </ul>
+        </li>
+    </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}

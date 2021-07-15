@@ -1,0 +1,117 @@
+﻿@model IEnumerable<BigSchool.Models.Course>
+
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Khóa Học Sắp Diễn Ra</h2>
+<table class="table">
+    <tr>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.Category.Name)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.Lecturer.Name)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.Place)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.DateTime)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td class="text-center">
+        @Html.DisplayFor(modelItem => item.Category.Name)
+    </td>
+    <td class="text-center">
+        @Html.DisplayFor(modelItem => item.Lecturer.Name)
+    </td>
+    <td class="text-center">
+        @Html.DisplayFor(modelItem => item.Place)
+    </td>
+    <td class="text-center" style="display:flex;justify-content : center;">
+        <div class="course-datetime">
+            <span>
+
+                @item.DateTime.Day.ToString("D2")
+            </span>
+            <span>
+                @item.DateTime.Month.ToString("D2")
+            </span>
+        </div>
+    </td>
+    <td class="text-center">
+        @if (item.isLogin)
+        {
+
+            if (item.isShowGoing)
+            {
+                <button data-course-id="@item.Id" class="btn btn-success onHandleAttendance">Đã Đăng Kí </button>
+            }
+            else
+            {
+                <button data-course-id="@item.Id" class="btn btn-info onHandleAttendance"> Đăng Kí </button>
+            }
+            if (item.isShowFollowing)
+            {
+                <button data-course-id="@item.LecturerId" class="btn btn-success onHandleFollowing">Hủy Theo Dõi </button>
+            }
+            else
+            {
+                <button data-course-id="@item.LecturerId" class="btn btn-info onHandleFollowing"> Theo Dõi </button>
+            }
+        }
+    </td>
+</tr>
+}
+
+</table>
+@section scripts {
+    <script>
+        $(document).ready(() => {
+            $(".onHandleAttendance").click((e) => {
+                var btn = $(e.target);
+                $.post("/api/attendances", { Id: btn.attr("data-course-id") })
+                    .done(() => {
+                        alert("Đăng Kí Thành Công !")
+                        btn.removeClass("btn-info")
+                            .addClass("btn-success")
+                            .text("Đã Đăng Kí")
+                    }).fail(() => {
+                        alert("Đã Đăng Ký Khóa Học Này Rồi, Vui Lòng Kiểm Tra Trong Khóa Học Của Bạn !");
+                    });
+            });
+            $(".onHandleFollowing").click((e) => {
+                var btn = $(e.target);
+                $.post("/api/following", { FolloweeId: btn.attr("data-course-id") })
+                    .done(function (result) {
+                        if (result == "cancel") {
+                            btn.removeClass("btn-success")
+                                .addClass("btn-info")
+                                .text("Theo Dõi")
+                            alert("Hủy Theo Dõi Thành Công !")
+                        } else {
+                            btn.removeClass("btn-info")
+                                .addClass("btn-success")
+                                .text("Hủy Theo Dõi")
+
+                            alert("Đang theo dõi !")
+                        }
+                    })
+                    .fail((err) => {
+                        if (err.status == 409 || err.status == 500) {
+                            alert("Ai lại đi theo dõi bản thân mình bao giờ !");
+                        } else {
+                            alert("Đã theo dõi giáo viên này rồi !");
+                        }
+                    });
+            });
+        });
+    </script>
+    
+    }

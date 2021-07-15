@@ -1,0 +1,116 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+
+/* Override the default bootstrap By Hoài Nhớ
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+.navbar-title {
+    color: #337ab7 !important;
+    float: left;
+    height: 50px;
+    padding: 15px 15px;
+    font-size: 18px;
+    line-height: 20px;
+}
+.navbar-brand {
+    color: blue !important;
+}
+.navbar-inverse {
+    background-color: orange;
+    border-color: orange;
+}
+.navbar-inverse .navbar-nav > li > a {
+    color: white !important;
+    transition : .25s ease;
+}
+.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus{
+    color : blue !important;
+    transform :translateY(-3px);
+}
+.navbar-account-title:hover > .navbar-list {
+    opacity : 1;
+    transform : translate(0);
+}
+.navbar-list {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: orange;
+    border-color: white;
+    border-radius: 0 0 10px 10px;
+    color: white;
+    opacity: 0;
+    padding: 10px 5px;
+    position: absolute;
+    transition: .35s ease-in-out;
+    transform: translateX(50px);
+}
+.navbar-list hr {
+    border-color : white;
+    width : 100%;
+}
+.navbar-item {
+    padding : 5px 10px;
+    width : max-content;
+}
+.navbar-item:hover {
+}
+.fas {
+    margin-right : 10px !important;
+    font-size : 2rem !important;
+}
+.navbar-logout-link {
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    word-spacing: 3px;
+    font-weight: bold;
+    width: max-content;
+}
+    .navbar-logout-link:hover, .navbar-logout-link:focus {
+        color: blue;
+        text-decoration: none;
+        transform : scale( 1.5);
+    }
+.navbar-item a {
+    color : white;
+}
+.navbar-item a:hover, .navbar-item a:focus {
+    color: blue;
+    text-decoration : none;
+}
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.text-center {
+    vertical-align: middle !important;
+}
+.course-datetime{
+    display : flex;
+    flex-direction : column;
+    align-items : center;
+    justify-content : center;
+    padding : 10px;
+    width : 50px;
+    height : 50px;
+    background-color: orange;
+    border-radius : 10px 0 10px 0;
+    color : white;
+}

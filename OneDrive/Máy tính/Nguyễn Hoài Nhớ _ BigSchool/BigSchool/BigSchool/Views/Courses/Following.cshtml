@@ -1,0 +1,73 @@
+﻿@model IEnumerable<BigSchool.Models.Course>
+
+@{
+    ViewBag.Title = "Following";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Danh Sách Giao Viên Đang Theo Dõi</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Category.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lecturer.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Place)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateTime)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lecturer.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Place)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateTime)
+            </td>
+            <td>
+                <button data-course-id="@item.Id" class="btn btn-danger onCancle"> Hủy Đăng Ký </button>
+            </td>
+        </tr>
+    }
+
+</table>
+@section scripts {
+    <script>
+        $(".onCancle").click(function (e) {
+            var button = $(e.target);
+            $.post("/api/attendances", { Id: button.attr("data-course-id") })
+                .done(function (result) {
+                    if (result == "Cancle") {
+                        alert("Hủy Thành Công !")
+                        button
+                            .removeClass("btn-danger")
+                            .addClass("btn-success")
+                            .text("Đăng Ký");
+                    } else {
+                        alert("Đăng Ký!")
+                        button
+                            .removeClass("btn-success")
+                            .addClass("btn-danger")
+                            .text("Hủy Đăng Ký");
+                    }
+                }).fail(function () {
+                    alert("Something fail");
+                });
+        });
+    </script>
+}
